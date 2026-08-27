@@ -1,4 +1,4 @@
-# Meskel Motors — Dealership Website
+# Yemareyam Car Import — Dealership Website
 
 Public marketing site for an Ethiopia-based car dealership/importer. Built
 with Next.js (App Router), Tailwind CSS, and the Supabase JS client.
