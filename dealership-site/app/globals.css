@@ -58,3 +58,37 @@ body {
 .font-display {
   font-family: var(--font-display);
 }
+
+/* Gentle, independent floating/rotating motion for the hero photo cluster.
+   Each card oscillates around its own base angle rather than spinning, so
+   the cluster feels alive without being distracting. */
+@keyframes drift-1 {
+  0%, 100% { transform: rotate(-4deg) translate(0, 0); }
+  50%      { transform: rotate(-1deg) translate(6px, -10px); }
+}
+@keyframes drift-2 {
+  0%, 100% { transform: rotate(8deg) translate(0, 0); }
+  50%      { transform: rotate(11.5deg) translate(-8px, 8px); }
+}
+@keyframes drift-3 {
+  0%, 100% { transform: rotate(-9deg) translate(0, 0); }
+  50%      { transform: rotate(-5.5deg) translate(8px, 6px); }
+}
+@keyframes drift-4 {
+  0%, 100% { transform: rotate(11deg) translate(0, 0); }
+  50%      { transform: rotate(7deg) translate(-6px, -8px); }
+}
+
+.animate-drift-1 { animation: drift-1 8s ease-in-out infinite; }
+.animate-drift-2 { animation: drift-2 9.5s ease-in-out infinite; animation-delay: -2s; }
+.animate-drift-3 { animation: drift-3 7s ease-in-out infinite; animation-delay: -4s; }
+.animate-drift-4 { animation: drift-4 10.5s ease-in-out infinite; animation-delay: -1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift-1,
+  .animate-drift-2,
+  .animate-drift-3,
+  .animate-drift-4 {
+    animation: none;
+  }
+}
