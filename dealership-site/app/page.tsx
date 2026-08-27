@@ -17,7 +17,7 @@ export default async function HomePage() {
   const avgRating = reviews.length
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : 0;
-  const heroImages = featured.slice(0, 3).map((c) => c.images[0]).filter(Boolean);
+  const heroImages = featured.slice(0, 4).map((c) => c.images[0]).filter(Boolean);
 
   return (
     <div>
@@ -62,30 +62,61 @@ export default async function HomePage() {
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="relative">
+            {/* Mobile / tablet: one clean hero photo */}
             {heroImages[0] && (
-              <div className="relative col-span-2 aspect-[16/10] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:hidden">
                 <Image
                   src={heroImages[0].url}
                   alt={heroImages[0].alt}
                   fill
                   unoptimized
                   priority
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  sizes="100vw"
                   className="object-cover"
                 />
               </div>
             )}
-            {heroImages[1] && (
-              <div className="relative aspect-square overflow-hidden rounded-2xl">
-                <Image src={heroImages[1].url} alt={heroImages[1].alt} fill unoptimized sizes="25vw" className="object-cover" />
-              </div>
-            )}
-            {heroImages[2] && (
-              <div className="relative aspect-square overflow-hidden rounded-2xl">
-                <Image src={heroImages[2].url} alt={heroImages[2].alt} fill unoptimized sizes="25vw" className="object-cover" />
-              </div>
-            )}
+
+            {/* Desktop: scattered photo cluster, angled and overlapping */}
+            <div className="relative hidden aspect-square lg:block">
+              {heroImages[0] && (
+                <div className="absolute left-[2%] top-[10%] z-10 w-[58%] rotate-[-4deg] overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={heroImages[0].url}
+                      alt={heroImages[0].alt}
+                      fill
+                      unoptimized
+                      priority
+                      sizes="30vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              )}
+              {heroImages[1] && (
+                <div className="absolute right-0 top-[-2%] z-30 w-[38%] rotate-[8deg] overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
+                  <div className="relative aspect-square">
+                    <Image src={heroImages[1].url} alt={heroImages[1].alt} fill unoptimized sizes="18vw" className="object-cover" />
+                  </div>
+                </div>
+              )}
+              {heroImages[2] && (
+                <div className="absolute bottom-[4%] left-[-2%] z-20 w-[40%] rotate-[-9deg] overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
+                  <div className="relative aspect-[4/3]">
+                    <Image src={heroImages[2].url} alt={heroImages[2].alt} fill unoptimized sizes="20vw" className="object-cover" />
+                  </div>
+                </div>
+              )}
+              {heroImages[3] && (
+                <div className="absolute bottom-[-4%] right-[-4%] z-40 w-[32%] rotate-[11deg] overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
+                  <div className="relative aspect-[3/4]">
+                    <Image src={heroImages[3].url} alt={heroImages[3].alt} fill unoptimized sizes="16vw" className="object-cover" />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
