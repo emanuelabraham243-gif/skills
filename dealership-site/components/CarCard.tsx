@@ -48,7 +48,7 @@ export default function CarCard({ car }: { car: Car }) {
       card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.02)`;
       card.style.setProperty("--glow-x", `${px * 100}%`);
       card.style.setProperty("--glow-y", `${py * 100}%`);
-      card.style.setProperty("--glow-opacity", "1");
+      card.style.setProperty("--glow-opacity", "0.25");
     });
   }
 
@@ -82,13 +82,15 @@ export default function CarCard({ car }: { car: Car }) {
           />
         )}
 
-        {/* Glow that tracks the cursor, synced with the tilt via the same handler */}
+        {/* Faint highlight that tracks the cursor, synced with the tilt via the
+            same handler. Kept low-opacity and blended so the photo underneath
+            stays fully visible rather than getting washed out. */}
         <div
-          className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300"
+          className="pointer-events-none absolute inset-0 rounded-2xl mix-blend-overlay transition-opacity duration-300"
           style={{
             opacity: "var(--glow-opacity, 0)",
             background:
-              "radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), var(--accent-soft) 0%, transparent 55%)",
+              "radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), var(--accent-soft) 0%, transparent 40%)",
           }}
         />
 
