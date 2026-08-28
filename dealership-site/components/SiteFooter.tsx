@@ -14,6 +14,7 @@ const company = [
   { href: "/reviews", label: "Reviews" },
   { href: "/car-wash", label: "Car Wash" },
   { href: "/faq", label: "FAQ" },
+  { href: "/credits", label: "Photo Credits" },
 ];
 
 export default function SiteFooter() {

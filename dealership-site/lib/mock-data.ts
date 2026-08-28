@@ -13,13 +13,58 @@ const angleLabels = [
   "Detail",
 ];
 
+export interface PhotoCredit {
+  slug: string;
+  fileTitle: string;
+  url: string;
+  sourcePageUrl: string;
+  license: string;
+  licenseVerified: boolean;
+}
+
+// Reference photos for the primary (card) image of each demo car, sourced
+// from Wikimedia Commons. Trim/color may differ slightly from the listed
+// vehicle — these are mockup/reference photography, not the actual car in
+// stock. See app/credits/page.tsx (linked from the footer) for the full,
+// visitor-facing attribution required by the CC licenses below; keep that
+// page in sync with this list. Entries flagged licenseVerified: false had
+// an uncertain license at sourcing time and must be checked on the source
+// page before any real production use.
+export const photoCredits: PhotoCredit[] = [
+  { slug: "toyota-rav4-2022", fileTitle: "Toyota_RAV4_2.5_LTD_HEV_2022.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_RAV4_2.5_LTD_HEV_2022.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Toyota_RAV4_2.5_LTD_HEV_2022.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "toyota-corolla-2021", fileTitle: "2021_Toyota_Corolla_SE_Hatchback.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2021_Toyota_Corolla_SE_Hatchback.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2021_Toyota_Corolla_SE_Hatchback.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "toyota-land-cruiser-prado-2020", fileTitle: "Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "hyundai-tucson-2023", fileTitle: "2023_Hyundai_Tucson_Signature_(India)_front_view.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2023_Hyundai_Tucson_Signature_%28India%29_front_view.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2023_Hyundai_Tucson_Signature_(India)_front_view.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "hyundai-i10-2019", fileTitle: "Hyundai_i10_(48813787728).jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hyundai_i10_%2848813787728%29.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Hyundai_i10_(48813787728).jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "suzuki-dzire-2021", fileTitle: "Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG", license: "CC BY 3.0", licenseVerified: true },
+  { slug: "suzuki-vitara-2022", fileTitle: "2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", license: "CC BY 2.0", licenseVerified: true },
+  { slug: "nissan-xtrail-2020", fileTitle: "2020_Nissan_X-Trail_VL_facelift_(front),_West_Surabaya.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2020_Nissan_X-Trail_VL_facelift_%28front%29%2C_West_Surabaya.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2020_Nissan_X-Trail_VL_facelift_(front),_West_Surabaya.jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "mitsubishi-pajero-2019", fileTitle: "2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "lexus-rx350-2021", fileTitle: "Lexus_RX_350_2021.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lexus_RX_350_2021.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Lexus_RX_350_2021.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "kia-sportage-2022", fileTitle: "2022_Kia_Sportage.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Kia_Sportage.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2022_Kia_Sportage.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "ford-ranger-2021", fileTitle: "2021_Ford_Ranger_XL,_front_6.1.22.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2021_Ford_Ranger_XL%2C_front_6.1.22.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2021_Ford_Ranger_XL,_front_6.1.22.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "honda-crv-2023", fileTitle: "2023_Honda_CR-V_front_end.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2023_Honda_CR-V_front_end.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2023_Honda_CR-V_front_end.jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "volkswagen-tiguan-2020", fileTitle: "2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", license: "Public Domain", licenseVerified: true },
+];
+
 function images(slug: string, make: string, model: string, year: number): CarImage[] {
-  return angleLabels.map((label, i) => ({
-    id: `${slug}-img-${i}`,
-    url: `/cars/${slug}/${i}.svg`,
-    alt: `${year} ${make} ${model} — ${label}`,
-    position: i,
-  }));
+  const credit = photoCredits.find((c) => c.slug === slug);
+  return angleLabels.map((label, i) => {
+    if (i === 0 && credit) {
+      return {
+        id: `${slug}-img-0`,
+        url: credit.url,
+        alt: `${year} ${make} ${model} — reference photo (trim/color may vary)`,
+        position: 0,
+      };
+    }
+    return {
+      id: `${slug}-img-${i}`,
+      url: `/cars/${slug}/${i}.svg`,
+      alt: `${year} ${make} ${model} — ${label}`,
+      position: i,
+    };
+  });
 }
 
 interface CarSeed
