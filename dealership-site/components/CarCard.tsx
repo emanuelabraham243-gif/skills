@@ -9,11 +9,9 @@ export default function CarCard({ car }: { car: Car }) {
   const isSold = car.status === "sold";
 
   return (
-    <Link
-      href={`/cars/${car.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition-shadow hover:shadow-xl hover:shadow-ink/5"
-    >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-dim">
+    <Link href={`/cars/${car.slug}`} className="group flex flex-col">
+      {/* The card is the photo — text lives outside it, not wrapped in a border/box */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper-dim shadow-sm shadow-ink/5 transition-transform duration-300 ease-out group-hover:-translate-y-1">
         {primary && (
           <Image
             src={primary.url}
@@ -21,9 +19,15 @@ export default function CarCard({ car }: { car: Car }) {
             fill
             unoptimized
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className={`object-cover transition-transform duration-500 group-hover:scale-105 ${isSold ? "grayscale" : ""}`}
+            className={`object-cover ${isSold ? "grayscale" : ""}`}
           />
         )}
+
+        {/* Corner glow, visible only on hover, sweeping gently back and forth */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute -right-1/4 -top-1/4 h-2/3 w-2/3 rounded-full bg-[radial-gradient(circle,_var(--accent-soft)_0%,_transparent_70%)] blur-2xl group-hover:animate-[glow-sweep_3s_ease-in-out_infinite]" />
+        </div>
+
         <div className="absolute left-3 top-3">
           <StatusBadge status={car.status} className="bg-white/95 shadow-sm" />
         </div>
@@ -34,7 +38,7 @@ export default function CarCard({ car }: { car: Car }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className="flex flex-1 flex-col gap-3 pt-4">
         <div>
           <h3 className="font-display text-lg leading-snug text-ink">
             {car.year} {car.make} {car.model}
@@ -50,7 +54,7 @@ export default function CarCard({ car }: { car: Car }) {
           <span>{titleCase(car.fuelType)}</span>
         </div>
 
-        <div className="mt-auto flex items-baseline justify-between pt-2">
+        <div className="mt-auto flex items-baseline justify-between pt-1">
           <span className="font-display text-xl text-ink">{formatPrice(car.price, car.currency)}</span>
           <span className="text-sm text-accent opacity-0 transition-opacity group-hover:opacity-100">
             View details →
