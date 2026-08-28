@@ -92,15 +92,3 @@ body {
     animation: none;
   }
 }
-
-/* Soft corner glow that sweeps back and forth while a car card is hovered. */
-@keyframes glow-sweep {
-  0%, 100% { transform: translate(-10%, -10%) scale(1); }
-  50%      { transform: translate(10%, 10%) scale(1.15); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [class*="animate-[glow-sweep"] {
-    animation: none;
-  }
-}
