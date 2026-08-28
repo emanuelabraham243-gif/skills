@@ -76,7 +76,7 @@ export default function ProcessPage() {
         ))}
       </ol>
 
-      <div className="mt-16 rounded-2xl border border-line bg-white p-8 text-center sm:p-10">
+      <div className="mt-16 rounded-2xl border border-line bg-surface p-8 text-center sm:p-10">
         <h2 className="font-display text-xl text-ink sm:text-2xl">Ready to get started?</h2>
         <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
           <Link href="/cars" className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper hover:bg-accent">

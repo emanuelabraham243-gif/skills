@@ -43,7 +43,7 @@ export default function CarWashPage() {
           <div
             key={pkg.name}
             className={`flex flex-col rounded-2xl border p-6 ${
-              pkg.highlighted ? "border-accent bg-white shadow-lg shadow-accent/10" : "border-line bg-white"
+              pkg.highlighted ? "border-accent bg-surface shadow-lg shadow-accent/10" : "border-line bg-surface"
             }`}
           >
             {pkg.highlighted && (
@@ -66,7 +66,7 @@ export default function CarWashPage() {
         ))}
       </div>
 
-      <div className="mx-auto mt-16 max-w-xl rounded-2xl border border-line bg-white p-6 sm:p-8">
+      <div className="mx-auto mt-16 max-w-xl rounded-2xl border border-line bg-surface p-6 sm:p-8">
         <h2 className="font-display text-xl text-ink">Book a wash</h2>
         <p className="mt-1 text-sm text-ink-soft">Walk-ins welcome, but booking ahead guarantees your slot.</p>
         <div className="mt-6">

@@ -27,7 +27,7 @@ export default function Gallery({ images }: { images: CarImage[] }) {
           sizes="(min-width: 1024px) 60vw, 100vw"
           className="object-cover"
         />
-        <span className="absolute bottom-3 right-3 rounded-full bg-ink/70 px-3 py-1 text-xs text-paper">
+        <span className="absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs text-white">
           {active + 1} / {images.length}
         </span>
       </button>
@@ -49,13 +49,13 @@ export default function Gallery({ images }: { images: CarImage[] }) {
 
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/95 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
           onClick={() => setLightbox(false)}
         >
           <button
             type="button"
             aria-label="Close"
-            className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-paper hover:bg-white/20"
+            className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
             onClick={() => setLightbox(false)}
           >
             ✕
@@ -70,7 +70,7 @@ export default function Gallery({ images }: { images: CarImage[] }) {
                 type="button"
                 aria-label={`Show image ${i + 1}`}
                 onClick={() => setActive(i)}
-                className={`h-2 w-2 rounded-full ${i === active ? "bg-paper" : "bg-paper/40"}`}
+                className={`h-2 w-2 rounded-full ${i === active ? "bg-white" : "bg-white/40"}`}
               />
             ))}
           </div>

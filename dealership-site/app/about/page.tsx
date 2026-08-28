@@ -66,7 +66,7 @@ export default function AboutPage() {
 
       <div className="mt-20 grid gap-4 sm:grid-cols-3">
         {values.map((v) => (
-          <div key={v.title} className="rounded-2xl border border-line bg-white p-6">
+          <div key={v.title} className="rounded-2xl border border-line bg-surface p-6">
             <h3 className="font-display text-lg text-ink">{v.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.body}</p>
           </div>

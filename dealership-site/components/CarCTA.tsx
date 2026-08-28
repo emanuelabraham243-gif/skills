@@ -60,7 +60,7 @@ export default function CarCTA({ car }: { car: Car }) {
       </div>
 
       {panel && (
-        <div className="mt-5 rounded-2xl border border-line bg-white p-5 sm:p-6">
+        <div className="mt-5 rounded-2xl border border-line bg-surface p-5 sm:p-6">
           {panel === "test_drive" && (
             <>
               <h3 className="mb-1 font-display text-lg text-ink">Book a test drive</h3>

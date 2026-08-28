@@ -55,7 +55,7 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
       </Suspense>
 
       {cars.length === 0 ? (
-        <div className="rounded-2xl border border-line bg-white p-10 text-center">
+        <div className="rounded-2xl border border-line bg-surface p-10 text-center">
           <p className="text-ink">No cars match those filters right now.</p>
           <p className="mt-2 text-sm text-ink-soft">
             Try widening your search, or let us find one for you —{" "}

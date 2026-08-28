@@ -32,7 +32,7 @@ export default async function ReviewsPage() {
 
       <div className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3">
         {reviews.map((review) => (
-          <div key={review.id} className="mb-5 break-inside-avoid rounded-2xl border border-line bg-white p-6">
+          <div key={review.id} className="mb-5 break-inside-avoid rounded-2xl border border-line bg-surface p-6">
             <Stars rating={review.rating} />
             <p className="mt-3 text-sm leading-relaxed text-ink">&ldquo;{review.body}&rdquo;</p>
             <div className="mt-4 flex items-center justify-between text-xs text-ink-soft">

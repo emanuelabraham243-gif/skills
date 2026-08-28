@@ -3,7 +3,7 @@ import type { CarStatus } from "@/lib/types";
 const statusConfig: Record<CarStatus, { label: string; className: string }> = {
   available: { label: "Available", className: "bg-sage-soft text-sage" },
   reserved: { label: "Reserved", className: "bg-accent-soft/40 text-accent" },
-  on_test_drive: { label: "On Test Drive", className: "bg-amber-100 text-amber-800" },
+  on_test_drive: { label: "On Test Drive", className: "bg-amber-bg text-amber-ink" },
   sold: { label: "Sold", className: "bg-ink/10 text-ink-soft" },
   coming_soon: { label: "Coming Soon", className: "bg-paper-dim text-ink-soft border border-line" },
 };

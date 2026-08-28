@@ -34,7 +34,7 @@ export default function CustomRequestPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white p-6 sm:p-8">
+        <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
           <LeadForm
             leadType="custom_request"
             submitLabel="Submit Request"

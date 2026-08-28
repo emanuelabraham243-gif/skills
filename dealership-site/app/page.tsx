@@ -126,7 +126,7 @@ export default async function HomePage() {
         <form
           action="/cars"
           method="GET"
-          className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-white p-4 sm:grid-cols-4 sm:gap-4 sm:p-5"
+          className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-surface p-4 sm:grid-cols-4 sm:gap-4 sm:p-5"
         >
           <div className="col-span-2 sm:col-span-1">
             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-soft">
@@ -202,7 +202,7 @@ export default async function HomePage() {
             { title: "Full photo galleries", body: "5+ photos per car, primary angle first — no surprises." },
             { title: "Honest condition notes", body: "Public summaries written in plain language, not sales copy." },
           ].map((item) => (
-            <div key={item.title} className="rounded-2xl border border-line bg-white p-6">
+            <div key={item.title} className="rounded-2xl border border-line bg-surface p-6">
               <h3 className="font-display text-lg text-ink">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.body}</p>
             </div>
@@ -216,7 +216,7 @@ export default async function HomePage() {
           <SectionHeading eyebrow="Reviews" title="What buyers are saying" align="center" />
           <div className="mt-8 grid gap-5 sm:grid-cols-3">
             {reviews.slice(0, 3).map((review) => (
-              <div key={review.id} className="rounded-2xl border border-line bg-white p-6">
+              <div key={review.id} className="rounded-2xl border border-line bg-surface p-6">
                 <Stars rating={review.rating} />
                 <p className="mt-3 text-sm leading-relaxed text-ink">&ldquo;{review.body}&rdquo;</p>
                 <p className="mt-4 text-sm font-medium text-ink-soft">

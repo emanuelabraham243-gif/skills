@@ -41,7 +41,7 @@ export default function CarFiltersPanel({
   }
 
   const selectClass =
-    "w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink focus:border-accent focus:outline-none";
+    "w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink focus:border-accent focus:outline-none";
   const labelClass = "mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-soft";
 
   return (
@@ -53,14 +53,14 @@ export default function CarFiltersPanel({
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink"
+          className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm font-medium text-ink"
         >
           Filters {activeCount > 0 && <span className="rounded-full bg-accent px-1.5 py-0.5 text-xs text-accent-ink">{activeCount}</span>}
         </button>
       </div>
 
       {open && (
-        <div className="mt-4 grid grid-cols-2 gap-4 rounded-2xl border border-line bg-white p-5 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-4 grid grid-cols-2 gap-4 rounded-2xl border border-line bg-surface p-5 sm:grid-cols-3 lg:grid-cols-4">
           <div>
             <label className={labelClass}>Make</label>
             <select

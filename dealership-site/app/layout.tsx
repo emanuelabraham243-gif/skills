@@ -29,8 +29,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        {/* Applies a saved theme choice before first paint, avoiding a
+            flash. When nothing is saved, the CSS prefers-color-scheme
+            media query handles the system default with no JS needed. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
         <SiteHeader />
         <main className="flex-1">{children}</main>

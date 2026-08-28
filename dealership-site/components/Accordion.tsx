@@ -6,7 +6,7 @@ export default function Accordion({ items }: { items: { question: string; answer
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-line rounded-2xl border border-line bg-white">
+    <div className="divide-y divide-line rounded-2xl border border-line bg-surface">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (

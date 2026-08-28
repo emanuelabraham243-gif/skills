@@ -86,7 +86,7 @@ export default function LeadForm({
   }
 
   const inputClass =
-    "w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-soft/60 focus:border-accent focus:outline-none";
+    "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-soft/60 focus:border-accent focus:outline-none";
   const labelClass = "mb-1.5 block text-sm font-medium text-ink";
 
   return (

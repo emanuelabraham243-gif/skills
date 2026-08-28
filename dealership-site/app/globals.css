@@ -3,6 +3,7 @@
 :root {
   --paper: #faf6ef;
   --paper-dim: #f2ece1;
+  --surface: #ffffff;
   --ink: #211d18;
   --ink-soft: #4a443b;
   --line: #e4dccb;
@@ -11,11 +12,51 @@
   --accent-ink: #fdf4ec;
   --sage: #5c6b4f;
   --sage-soft: #dbe2d1;
+  --amber-bg: #fef3c7;
+  --amber-ink: #92400e;
+}
+
+/* Dark palette — applied when the system prefers dark and the visitor
+   hasn't explicitly chosen light, or whenever data-theme="dark" is set
+   (the toggle in the header always wins over the system preference). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #18140f;
+    --paper-dim: #221c16;
+    --surface: #241e18;
+    --ink: #f3ede1;
+    --ink-soft: #b6ab98;
+    --line: #3a3128;
+    --accent: #e08249;
+    --accent-soft: #a85a2e;
+    --accent-ink: #1c1712;
+    --sage: #8fa37e;
+    --sage-soft: #33402c;
+    --amber-bg: #3f2d10;
+    --amber-ink: #f2c675;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #18140f;
+  --paper-dim: #221c16;
+  --surface: #241e18;
+  --ink: #f3ede1;
+  --ink-soft: #b6ab98;
+  --line: #3a3128;
+  --accent: #e08249;
+  --accent-soft: #a85a2e;
+  --accent-ink: #1c1712;
+  --sage: #8fa37e;
+  --sage-soft: #33402c;
+  --amber-bg: #3f2d10;
+  --amber-ink: #f2c675;
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-paper-dim: var(--paper-dim);
+  --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
@@ -24,6 +65,8 @@
   --color-accent-ink: var(--accent-ink);
   --color-sage: var(--sage);
   --color-sage-soft: var(--sage-soft);
+  --color-amber-bg: var(--amber-bg);
+  --color-amber-ink: var(--amber-ink);
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
 }
@@ -32,9 +75,20 @@ html {
   color-scheme: light;
 }
 
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
