@@ -61,10 +61,16 @@ export const demoCars = [
   { slug: "toyota-corolla-2021" },
   { slug: "toyota-land-cruiser-prado-2020" },
   { slug: "hyundai-tucson-2023" },
+  { slug: "hyundai-i10-2019" },
+  { slug: "suzuki-dzire-2021" },
   { slug: "suzuki-vitara-2022" },
   { slug: "nissan-xtrail-2020" },
   { slug: "mitsubishi-pajero-2019" },
+  { slug: "lexus-rx350-2021" },
   { slug: "kia-sportage-2022" },
+  { slug: "ford-ranger-2021" },
+  { slug: "honda-crv-2023" },
+  { slug: "volkswagen-tiguan-2020" },
 ];
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

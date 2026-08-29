@@ -14,6 +14,7 @@ const company = [
   { href: "/about", label: "About Us" },
   { href: "/reviews", label: "Reviews" },
   { href: "/faq", label: "FAQ" },
+  { href: "/credits", label: "Photo Credits" },
 ];
 
 export default function SiteFooter() {

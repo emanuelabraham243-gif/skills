@@ -15,13 +15,59 @@ const carAngleLabels = [
   "Detail",
 ];
 
+export interface PhotoCredit {
+  slug: string;
+  fileTitle: string;
+  url: string;
+  sourcePageUrl: string;
+  license: string;
+  licenseVerified: boolean;
+}
+
+// Reference photos for the primary (card) image of each demo car, sourced
+// from Wikimedia Commons — the same set used on the Yemareyam Car Import
+// site. Trim/color may differ slightly from the listed vehicle — these are
+// mockup/reference photography, not the actual car in stock. See
+// app/credits/page.tsx (linked from the footer) for the full, visitor-facing
+// attribution required by the CC licenses below; keep that page in sync
+// with this list. Entries flagged licenseVerified: false had an uncertain
+// license at sourcing time and must be checked on the source page before
+// any real production use.
+export const photoCredits: PhotoCredit[] = [
+  { slug: "toyota-rav4-2022", fileTitle: "Toyota_RAV4_2.5_LTD_HEV_2022.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_RAV4_2.5_LTD_HEV_2022.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Toyota_RAV4_2.5_LTD_HEV_2022.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "toyota-corolla-2021", fileTitle: "2021_Toyota_Corolla_SE_Hatchback.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2021_Toyota_Corolla_SE_Hatchback.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2021_Toyota_Corolla_SE_Hatchback.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "toyota-land-cruiser-prado-2020", fileTitle: "Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Toyota_Land_Cruiser_Prado_J150_4.0_VX_2020.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "hyundai-tucson-2023", fileTitle: "2023_Hyundai_Tucson_Signature_(India)_front_view.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2023_Hyundai_Tucson_Signature_%28India%29_front_view.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2023_Hyundai_Tucson_Signature_(India)_front_view.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "hyundai-i10-2019", fileTitle: "Hyundai_i10_(48813787728).jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hyundai_i10_%2848813787728%29.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Hyundai_i10_(48813787728).jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "suzuki-dzire-2021", fileTitle: "Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Maruti_Suzuki_Dzire_VXi_VVT_%28front%29.JPG", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG", license: "CC BY 3.0", licenseVerified: true },
+  { slug: "suzuki-vitara-2022", fileTitle: "2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2022_Suzuki_Vitara_1.5_Full_Hybrid.jpg", license: "CC BY 2.0", licenseVerified: true },
+  { slug: "nissan-xtrail-2020", fileTitle: "2020_Nissan_X-Trail_VL_facelift_(front),_West_Surabaya.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2020_Nissan_X-Trail_VL_facelift_%28front%29%2C_West_Surabaya.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2020_Nissan_X-Trail_VL_facelift_(front),_West_Surabaya.jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "mitsubishi-pajero-2019", fileTitle: "2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2019_Mitsubishi_Pajero_Sport_GT-Premium_4WD.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "lexus-rx350-2021", fileTitle: "Lexus_RX_350_2021.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lexus_RX_350_2021.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Lexus_RX_350_2021.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "kia-sportage-2022", fileTitle: "2022_Kia_Sportage.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Kia_Sportage.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2022_Kia_Sportage.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "ford-ranger-2021", fileTitle: "2021_Ford_Ranger_XL,_front_6.1.22.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2021_Ford_Ranger_XL%2C_front_6.1.22.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2021_Ford_Ranger_XL,_front_6.1.22.jpg", license: "CC BY-SA 4.0", licenseVerified: true },
+  { slug: "honda-crv-2023", fileTitle: "2023_Honda_CR-V_front_end.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2023_Honda_CR-V_front_end.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2023_Honda_CR-V_front_end.jpg", license: "Unconfirmed — verify on source page before production use", licenseVerified: false },
+  { slug: "volkswagen-tiguan-2020", fileTitle: "2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2020_Volkswagen_Tiguan_au_SIAM_2020.jpg", license: "Public Domain", licenseVerified: true },
+];
+
 function carImages(slug: string, make: string, model: string, year: number): GalleryImage[] {
-  return carAngleLabels.map((label, i) => ({
-    id: `${slug}-img-${i}`,
-    url: `/cars/${slug}/${i}.svg`,
-    alt: `${year} ${make} ${model} — ${label}`,
-    position: i,
-  }));
+  const credit = photoCredits.find((c) => c.slug === slug);
+  return carAngleLabels.map((label, i) => {
+    if (i === 0 && credit) {
+      return {
+        id: `${slug}-img-0`,
+        url: credit.url,
+        alt: `${year} ${make} ${model} — reference photo (trim/color may vary)`,
+        position: 0,
+      };
+    }
+    return {
+      id: `${slug}-img-${i}`,
+      url: `/cars/${slug}/${i}.svg`,
+      alt: `${year} ${make} ${model} — ${label}`,
+      position: i,
+    };
+  });
 }
 
 const tourAngleLabels = ["Cover", "Landscape", "Group Highlight", "Detail"];
@@ -253,6 +299,168 @@ export const mockCars: Car[] = [
     isFeatured: true,
     createdAt: "2026-07-01T08:00:00Z",
     images: carImages("kia-sportage-2022", "Kia", "Sportage", 2022),
+  },
+  {
+    id: "car-9",
+    slug: "hyundai-i10-2019",
+    make: "Hyundai",
+    model: "i10",
+    trim: "Magna",
+    year: 2019,
+    price: 2350000,
+    currency: "ETB",
+    mileageKm: 63400,
+    fuelType: "petrol",
+    transmission: "manual",
+    bodyType: "hatchback",
+    status: "available",
+    exteriorColor: "Fiery Red",
+    interiorColor: "Grey",
+    engine: "1.2L 4-cylinder",
+    drivetrain: "FWD",
+    seats: 5,
+    doors: 5,
+    conditionSummary:
+      "Affordable, economical city car — recently serviced, new tyres all round, ideal first import for budget-conscious buyers.",
+    specSheetUrl: "/spec-sheets/hyundai-i10-2019.pdf",
+    isFeatured: false,
+    createdAt: "2026-06-01T08:00:00Z",
+    images: carImages("hyundai-i10-2019", "Hyundai", "i10", 2019),
+  },
+  {
+    id: "car-10",
+    slug: "suzuki-dzire-2021",
+    make: "Suzuki",
+    model: "Dzire",
+    trim: "VXI",
+    year: 2021,
+    price: 3100000,
+    currency: "ETB",
+    mileageKm: 34700,
+    fuelType: "petrol",
+    transmission: "manual",
+    bodyType: "sedan",
+    status: "on_test_drive",
+    exteriorColor: "Pearl Arctic White",
+    interiorColor: "Beige",
+    engine: "1.2L 4-cylinder",
+    drivetrain: "FWD",
+    seats: 5,
+    doors: 4,
+    conditionSummary:
+      "Compact and fuel-efficient sedan, well suited to city driving — full inspection completed, no mechanical issues found.",
+    specSheetUrl: "/spec-sheets/suzuki-dzire-2021.pdf",
+    isFeatured: false,
+    createdAt: "2026-06-12T08:00:00Z",
+    images: carImages("suzuki-dzire-2021", "Suzuki", "Dzire", 2021),
+  },
+  {
+    id: "car-11",
+    slug: "lexus-rx350-2021",
+    make: "Lexus",
+    model: "RX 350",
+    trim: "F Sport",
+    year: 2021,
+    price: 12900000,
+    currency: "ETB",
+    mileageKm: 31600,
+    fuelType: "petrol",
+    transmission: "automatic",
+    bodyType: "suv",
+    status: "reserved",
+    exteriorColor: "Nori Green",
+    interiorColor: "Black Leather",
+    engine: "3.5L V6",
+    drivetrain: "AWD",
+    seats: 5,
+    doors: 5,
+    conditionSummary:
+      "Premium SUV in excellent condition, full service history, no accident history — a step up for buyers wanting luxury and reliability.",
+    specSheetUrl: "/spec-sheets/lexus-rx350-2021.pdf",
+    isFeatured: true,
+    createdAt: "2026-06-08T08:00:00Z",
+    images: carImages("lexus-rx350-2021", "Lexus", "RX 350", 2021),
+  },
+  {
+    id: "car-12",
+    slug: "ford-ranger-2021",
+    make: "Ford",
+    model: "Ranger",
+    trim: "XLT",
+    year: 2021,
+    price: 6700000,
+    currency: "ETB",
+    mileageKm: 39800,
+    fuelType: "diesel",
+    transmission: "automatic",
+    bodyType: "pickup",
+    status: "available",
+    exteriorColor: "Meteor Grey",
+    interiorColor: "Black",
+    engine: "2.0L Bi-Turbo Diesel",
+    drivetrain: "4WD",
+    seats: 5,
+    doors: 4,
+    conditionSummary:
+      "Capable work and off-road pickup, tow bar fitted, bed liner installed, recently serviced 4WD system.",
+    specSheetUrl: "/spec-sheets/ford-ranger-2021.pdf",
+    isFeatured: false,
+    createdAt: "2026-05-15T08:00:00Z",
+    images: carImages("ford-ranger-2021", "Ford", "Ranger", 2021),
+  },
+  {
+    id: "car-13",
+    slug: "honda-crv-2023",
+    make: "Honda",
+    model: "CR-V",
+    trim: "EX-L",
+    year: 2023,
+    price: 7400000,
+    currency: "ETB",
+    mileageKm: 0,
+    fuelType: "hybrid",
+    transmission: "automatic",
+    bodyType: "suv",
+    status: "coming_soon",
+    exteriorColor: "Platinum White Pearl",
+    interiorColor: "Black Leather",
+    engine: "2.0L Hybrid",
+    drivetrain: "AWD",
+    seats: 5,
+    doors: 5,
+    conditionSummary:
+      "Currently in transit and undergoing pre-listing inspection and detailing. Full condition summary will be published once it arrives.",
+    specSheetUrl: "/spec-sheets/honda-crv-2023.pdf",
+    isFeatured: true,
+    createdAt: "2026-07-10T08:00:00Z",
+    images: carImages("honda-crv-2023", "Honda", "CR-V", 2023),
+  },
+  {
+    id: "car-14",
+    slug: "volkswagen-tiguan-2020",
+    make: "Volkswagen",
+    model: "Tiguan",
+    trim: "SE",
+    year: 2020,
+    price: 5100000,
+    currency: "ETB",
+    mileageKm: 47600,
+    fuelType: "petrol",
+    transmission: "automatic",
+    bodyType: "crossover",
+    status: "available",
+    exteriorColor: "Deep Black Pearl",
+    interiorColor: "Titan Black",
+    engine: "2.0L Turbo",
+    drivetrain: "AWD",
+    seats: 5,
+    doors: 5,
+    conditionSummary:
+      "Well-equipped family crossover, recently serviced, clean title, no accident history.",
+    specSheetUrl: "/spec-sheets/volkswagen-tiguan-2020.pdf",
+    isFeatured: false,
+    createdAt: "2026-05-22T08:00:00Z",
+    images: carImages("volkswagen-tiguan-2020", "Volkswagen", "Tiguan", 2020),
   },
 ];
 
