@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="t21" x1="0" y1="0" x2="720" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#241f2c" />
+      <stop offset="1" stop-color="#b78bc9" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" fill="url(#t21)" />
+  
+  <g fill="none" stroke="#f5f7f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <path d="M60 340 L 220 180 L 300 260 L 400 120 L 520 300 L 600 220 L 660 340" />
+    <circle cx="540" cy="140" r="30" />
+    <path d="M60 340 L 660 340" />
+  </g>
+  <text x="40" y="440" font-family="Helvetica, Arial, sans-serif" font-size="14" letter-spacing="3" fill="#f5f7f6" opacity="0.65">LANDSCAPE</text>
+</svg>

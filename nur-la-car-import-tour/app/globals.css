@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f5f7f6;
+  --paper-dim: #e8eeec;
+  --surface: #ffffff;
+  --ink: #12262a;
+  --ink-soft: #4d6167;
+  --line: #d6e0dd;
+  --accent: #0d6e63;
+  --accent-soft: #7cbdb0;
+  --accent-ink: #eafaf5;
+  --gold: #c1892c;
+  --gold-soft: #f2e2bd;
+  --gold-ink: #3d2c0a;
+  --amber-bg: #fef3c7;
+  --amber-ink: #92400e;
+}
+
+/* Dark palette — applied when the system prefers dark and the visitor
+   hasn't explicitly chosen light, or whenever data-theme="dark" is set
+   (the toggle in the header always wins over the system preference). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1a1c;
+    --paper-dim: #142225;
+    --surface: #17262a;
+    --ink: #eaf2f0;
+    --ink-soft: #a1b8b5;
+    --line: #294140;
+    --accent: #4fbfae;
+    --accent-soft: #2f6b5f;
+    --accent-ink: #0a1c19;
+    --gold: #e0ac4d;
+    --gold-soft: #4a3a17;
+    --gold-ink: #fbecc9;
+    --amber-bg: #3f2d10;
+    --amber-ink: #f2c675;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0e1a1c;
+  --paper-dim: #142225;
+  --surface: #17262a;
+  --ink: #eaf2f0;
+  --ink-soft: #a1b8b5;
+  --line: #294140;
+  --accent: #4fbfae;
+  --accent-soft: #2f6b5f;
+  --accent-ink: #0a1c19;
+  --gold: #e0ac4d;
+  --gold-soft: #4a3a17;
+  --gold-ink: #fbecc9;
+  --amber-bg: #3f2d10;
+  --amber-ink: #f2c675;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-ink: var(--gold-ink);
+  --color-amber-bg: var(--amber-bg);
+  --color-amber-ink: var(--amber-ink);
+  --font-display: var(--font-spectral);
+  --font-sans: var(--font-manrope);
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-ink);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
