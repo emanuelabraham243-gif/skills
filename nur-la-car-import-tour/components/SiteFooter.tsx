@@ -3,6 +3,8 @@ import { siteConfig, whatsappLink } from "@/lib/site-config";
 
 const explore = [
   { href: "/cars", label: "Browse Cars" },
+  { href: "/compare", label: "Compare Cars" },
+  { href: "/wishlist", label: "Wishlist" },
   { href: "/tours", label: "Browse Tours" },
   { href: "/process", label: "How It Works" },
   { href: "/trade-in", label: "Trade In Your Car" },
