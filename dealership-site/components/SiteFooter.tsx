@@ -30,7 +30,7 @@ export default function SiteFooter() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-sage px-4 py-2 text-sm font-medium text-accent-ink"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-arrived px-4 py-2 text-sm font-medium text-white"
           >
             Chat on WhatsApp
           </a>

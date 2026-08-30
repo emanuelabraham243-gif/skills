@@ -20,15 +20,15 @@ export default function CustomRequestPage() {
 
           <div className="mt-8 space-y-5 text-sm text-ink-soft">
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">1</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">1</span>
               <p>Share your criteria — the more specific, the faster we can match.</p>
             </div>
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">2</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">2</span>
               <p>We&rsquo;ll respond with sourcing options and an estimated landed price and timeline.</p>
             </div>
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">3</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">3</span>
               <p>Once you approve, we handle purchase, shipping, and customs clearance — see our Process page.</p>
             </div>
           </div>

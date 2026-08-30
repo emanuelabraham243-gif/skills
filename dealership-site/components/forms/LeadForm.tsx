@@ -79,7 +79,7 @@ export default function LeadForm({
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-sage-soft bg-sage-soft/40 p-5 text-sm text-ink">
+      <div className="rounded-xl border border-arrived-soft bg-arrived-soft/40 p-5 text-sm text-ink">
         {successMessage}
       </div>
     );

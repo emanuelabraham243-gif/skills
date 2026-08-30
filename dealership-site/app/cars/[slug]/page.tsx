@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import CarCard from "@/components/CarCard";
 import CarCTA from "@/components/CarCTA";
 import Gallery from "@/components/Gallery";
+import PriceGate from "@/components/PriceGate";
 import SectionHeading from "@/components/SectionHeading";
 import StatusBadge from "@/components/StatusBadge";
-import { formatMileage, formatPrice, titleCase } from "@/lib/format";
+import { formatMileage, titleCase } from "@/lib/format";
 import { getAllCars, getCarBySlug, getSimilarCars } from "@/lib/data";
 
 export async function generateStaticParams() {
@@ -66,7 +67,7 @@ export default async function CarDetailPage({ params }: PageProps<"/cars/[slug]"
           </h1>
           {car.trim && <p className="mt-1 text-lg text-ink-soft">{car.trim}</p>}
 
-          <p className="mt-5 font-display text-3xl text-ink">{formatPrice(car.price, car.currency)}</p>
+          <PriceGate price={car.price} currency={car.currency} className="mt-5 block font-display text-3xl text-ink" />
           <p className="mt-1 text-sm text-ink-soft">{formatMileage(car.mileageKm)} · {titleCase(car.transmission)} · {titleCase(car.fuelType)}</p>
 
           <div className="mt-6">

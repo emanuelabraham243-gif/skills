@@ -20,15 +20,15 @@ export default function TradeInPage() {
 
           <div className="mt-8 space-y-5 text-sm text-ink-soft">
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">1</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">1</span>
               <p>Submit your vehicle details below — the more accurate, the better the initial estimate.</p>
             </div>
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">2</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">2</span>
               <p>We&rsquo;ll follow up to schedule a quick in-person inspection at our lot.</p>
             </div>
             <div className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-soft text-xs font-medium text-sage">3</span>
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-arrived-soft text-xs font-medium text-arrived">3</span>
               <p>We confirm a final offer, which you can apply directly toward your next purchase.</p>
             </div>
           </div>

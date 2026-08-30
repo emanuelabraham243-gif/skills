@@ -4,12 +4,15 @@ import CarCard from "@/components/CarCard";
 import SectionHeading from "@/components/SectionHeading";
 import Stars from "@/components/Stars";
 import PartnerLogo from "@/components/PartnerLogo";
-import { getApprovedReviews, getFeaturedCars, getPartners } from "@/lib/data";
+import BodyTypeCarousel from "@/components/BodyTypeCarousel";
+import BrandCarousel from "@/components/BrandCarousel";
+import { getAllCars, getApprovedReviews, getFeaturedCars, getMakes, getPartners } from "@/lib/data";
 import { siteConfig } from "@/lib/site-config";
 
 export default async function HomePage() {
-  const [featured, reviews, partners] = await Promise.all([
+  const [featured, allCars, reviews, partners] = await Promise.all([
     getFeaturedCars(6),
+    getAllCars(),
     getApprovedReviews(),
     getPartners(),
   ]);
@@ -18,161 +21,173 @@ export default async function HomePage() {
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : 0;
   const heroImages = featured.slice(0, 4).map((c) => c.images[0]).filter(Boolean);
+  const heroImage = heroImages[0];
+  const makes = getMakes(allCars);
 
   return (
     <div>
       {/* Hero */}
-      <section className="container-page pt-10 sm:pt-16">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-accent">
-              Trusted Car Import &amp; Sales — Addis Ababa
-            </p>
-            <h1 className="font-display text-4xl leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
-              Buy your next car with confidence, before you ever step into the showroom.
-            </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-ink-soft sm:text-lg">
-              Every car we import is inspected, photographed in full, and listed with an
-              honest condition summary — so what you see is exactly what you get when you
-              arrive.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/cars"
-                className="rounded-full bg-ink px-7 py-3.5 text-center text-sm font-medium text-paper transition-colors hover:bg-accent sm:text-base"
-              >
-                Browse Available Cars
-              </Link>
-              <Link
-                href="/process"
-                className="rounded-full border border-line px-7 py-3.5 text-center text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent sm:text-base"
-              >
-                See How It Works
-              </Link>
-            </div>
+      <section className="relative overflow-hidden pt-10 sm:pt-14">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-16 select-none whitespace-nowrap text-center font-display text-[16vw] font-black leading-none text-ink/[0.04] sm:top-20 sm:text-[9rem]"
+        >
+          {siteConfig.name.toUpperCase()}
+        </div>
 
-            {reviews.length > 0 && (
-              <div className="mt-8 flex items-center gap-3">
-                <Stars rating={Math.round(avgRating)} />
-                <p className="text-sm text-ink-soft">
-                  <span className="font-medium text-ink">{avgRating.toFixed(1)}</span> from{" "}
-                  {reviews.length}+ verified buyers
-                </p>
-              </div>
+        <div className="container-page relative z-10 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+            Trusted Car Import &amp; Sales — Addis Ababa
+          </p>
+          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-brand-gradient sm:text-5xl">
+            Connecting you with the right car every time.
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            Every car we import is inspected, photographed in full, and listed with an honest
+            condition summary — so what you see is exactly what you get when you arrive.
+          </p>
+
+          {reviews.length > 0 && (
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <Stars rating={Math.round(avgRating)} />
+              <p className="text-sm text-ink-soft">
+                <span className="font-medium text-ink">{avgRating.toFixed(1)}</span> from{" "}
+                {reviews.length}+ verified buyers
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="container-page relative z-10 mt-6 sm:mt-10">
+          <div className="relative mx-auto aspect-[16/9] max-w-3xl">
+            {heroImage && (
+              <Image
+                src={heroImage.url}
+                alt={heroImage.alt}
+                fill
+                unoptimized
+                priority
+                sizes="(min-width: 640px) 48rem, 100vw"
+                className="object-contain drop-shadow-2xl"
+              />
             )}
           </div>
 
-          <div className="relative">
-            {/* Mobile / tablet: one clean hero photo */}
-            {heroImages[0] && (
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:hidden">
-                <Image
-                  src={heroImages[0].url}
-                  alt={heroImages[0].alt}
-                  fill
-                  unoptimized
-                  priority
-                  sizes="100vw"
-                  className="object-cover"
-                />
+          {heroImages.length > 1 && (
+            <div className="absolute right-2 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex">
+              <span className="text-xs font-medium uppercase tracking-wide text-accent [writing-mode:vertical-rl]">
+                Exclusive Car Selections
+              </span>
+              <div className="flex flex-col gap-2">
+                {heroImages.map((img, i) => (
+                  <span key={img.id} className={`h-2 w-2 rounded-full ${i === 0 ? "bg-accent" : "bg-line"}`} />
+                ))}
               </div>
-            )}
-
-            {/* Desktop: scattered photo cluster, angled and overlapping */}
-            <div className="relative hidden aspect-square lg:block">
-              {heroImages[0] && (
-                <div className="absolute left-[2%] top-[10%] z-10 w-[58%] animate-drift-1 overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src={heroImages[0].url}
-                      alt={heroImages[0].alt}
-                      fill
-                      unoptimized
-                      priority
-                      sizes="30vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              )}
-              {heroImages[1] && (
-                <div className="absolute right-0 top-[-2%] z-30 w-[38%] animate-drift-2 overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
-                  <div className="relative aspect-square">
-                    <Image src={heroImages[1].url} alt={heroImages[1].alt} fill unoptimized sizes="18vw" className="object-cover" />
-                  </div>
-                </div>
-              )}
-              {heroImages[2] && (
-                <div className="absolute bottom-[4%] left-[-2%] z-20 w-[40%] animate-drift-3 overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
-                  <div className="relative aspect-[4/3]">
-                    <Image src={heroImages[2].url} alt={heroImages[2].alt} fill unoptimized sizes="20vw" className="object-cover" />
-                  </div>
-                </div>
-              )}
-              {heroImages[3] && (
-                <div className="absolute bottom-[-4%] right-[-4%] z-40 w-[32%] animate-drift-4 overflow-hidden rounded-2xl shadow-xl shadow-ink/10">
-                  <div className="relative aspect-[3/4]">
-                    <Image src={heroImages[3].url} alt={heroImages[3].alt} fill unoptimized sizes="16vw" className="object-cover" />
-                  </div>
-                </div>
-              )}
             </div>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* Quick search */}
-      <section className="container-page mt-14 sm:mt-20">
+      {/* Search bar */}
+      <section className="container-page relative z-10 mt-8 sm:mt-12">
         <form
           action="/cars"
           method="GET"
-          className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-surface p-4 sm:grid-cols-4 sm:gap-4 sm:p-5"
+          className="rounded-2xl border border-line bg-surface p-3 shadow-lg shadow-ink/10 sm:p-4"
         >
-          <div className="col-span-2 sm:col-span-1">
-            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-soft">
-              Body type
-            </label>
-            <select name="bodyType" className="w-full rounded-lg border border-line px-3 py-2.5 text-sm">
-              <option value="">Any</option>
-              <option value="suv">SUV</option>
-              <option value="sedan">Sedan</option>
-              <option value="hatchback">Hatchback</option>
-              <option value="pickup">Pickup</option>
-              <option value="crossover">Crossover</option>
-            </select>
-          </div>
-          <div>
-            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-soft">
-              Fuel
-            </label>
-            <select name="fuelType" className="w-full rounded-lg border border-line px-3 py-2.5 text-sm">
-              <option value="">Any</option>
-              <option value="petrol">Petrol</option>
-              <option value="diesel">Diesel</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="electric">Electric</option>
-            </select>
-          </div>
-          <div>
-            <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-ink-soft">
-              Max budget (ETB)
-            </label>
+          <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-ink-soft">
+              <path
+                fillRule="evenodd"
+                d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.45 4.39l3.08 3.08a.75.75 0 1 1-1.06 1.06l-3.08-3.08A7 7 0 0 1 2 9Z"
+                clipRule="evenodd"
+              />
+            </svg>
             <input
-              name="priceMax"
-              type="number"
-              placeholder="e.g. 6000000"
-              className="w-full rounded-lg border border-line px-3 py-2.5 text-sm"
+              name="q"
+              placeholder="Search brand, model, keywords…"
+              className="flex-1 bg-transparent text-sm text-ink outline-none placeholder:text-ink-soft/60"
             />
           </div>
-          <div className="flex items-end">
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-ink px-4 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent"
-            >
-              Search Cars
-            </button>
+
+          <div className="mt-3 grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-purple sm:grid-cols-3 lg:grid-cols-6">
+            <label className="flex flex-col justify-center px-4 py-2.5">
+              <span className="text-[0.65rem] font-medium uppercase tracking-wide text-purple-ink/60">Make</span>
+              <select name="make" className="mt-0.5 bg-transparent text-sm text-purple-ink outline-none [color-scheme:dark]">
+                <option value="" className="text-ink">Any make</option>
+                {makes.map((m) => (
+                  <option key={m} value={m} className="text-ink">{m}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col justify-center border-t border-purple-ink/10 px-4 py-2.5 sm:border-t-0 sm:border-l">
+              <span className="text-[0.65rem] font-medium uppercase tracking-wide text-purple-ink/60">Body type</span>
+              <select name="bodyType" className="mt-0.5 bg-transparent text-sm text-purple-ink outline-none [color-scheme:dark]">
+                <option value="" className="text-ink">Any body type</option>
+                <option value="suv" className="text-ink">SUV</option>
+                <option value="sedan" className="text-ink">Sedan</option>
+                <option value="hatchback" className="text-ink">Hatchback</option>
+                <option value="pickup" className="text-ink">Pickup</option>
+                <option value="crossover" className="text-ink">Crossover</option>
+              </select>
+            </label>
+
+            <label className="flex flex-col justify-center border-t border-purple-ink/10 px-4 py-2.5 sm:border-t-0 sm:border-l">
+              <span className="text-[0.65rem] font-medium uppercase tracking-wide text-purple-ink/60">Fuel</span>
+              <select name="fuelType" className="mt-0.5 bg-transparent text-sm text-purple-ink outline-none [color-scheme:dark]">
+                <option value="" className="text-ink">Any fuel</option>
+                <option value="petrol" className="text-ink">Petrol</option>
+                <option value="diesel" className="text-ink">Diesel</option>
+                <option value="hybrid" className="text-ink">Hybrid</option>
+                <option value="electric" className="text-ink">Electric</option>
+              </select>
+            </label>
+
+            <label className="flex flex-col justify-center border-t border-purple-ink/10 px-4 py-2.5 sm:border-t sm:border-l lg:border-t-0">
+              <span className="text-[0.65rem] font-medium uppercase tracking-wide text-purple-ink/60">Year (min)</span>
+              <input
+                name="yearMin"
+                type="number"
+                inputMode="numeric"
+                placeholder="e.g. 2018"
+                className="mt-0.5 bg-transparent text-sm text-purple-ink outline-none placeholder:text-purple-ink/40"
+              />
+            </label>
+
+            <label className="flex flex-col justify-center border-t border-purple-ink/10 px-4 py-2.5 sm:border-l lg:border-t-0">
+              <span className="text-[0.65rem] font-medium uppercase tracking-wide text-purple-ink/60">Max budget (ETB)</span>
+              <input
+                name="priceMax"
+                type="number"
+                inputMode="numeric"
+                placeholder="e.g. 6000000"
+                className="mt-0.5 bg-transparent text-sm text-purple-ink outline-none placeholder:text-purple-ink/40"
+              />
+            </label>
+
+            <div className="flex items-center justify-center border-t border-purple-ink/10 p-2 sm:col-span-3 sm:border-t sm:border-l lg:col-span-1 lg:border-t-0">
+              <button
+                type="submit"
+                className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-ink transition-colors hover:opacity-90"
+              >
+                Find Your Car
+              </button>
+            </div>
           </div>
         </form>
+      </section>
+
+      {/* Search by body type */}
+      <section className="container-page mt-16 sm:mt-24">
+        <SectionHeading
+          eyebrow="Browse"
+          title="Search by Body Type"
+          description="Find the car that fits your lifestyle and personality."
+        />
+        <div className="mt-8">
+          <BodyTypeCarousel />
+        </div>
       </section>
 
       {/* Featured / new arrivals */}
@@ -191,6 +206,18 @@ export default async function HomePage() {
           {featured.map((car) => (
             <CarCard key={car.id} car={car} />
           ))}
+        </div>
+      </section>
+
+      {/* Brands */}
+      <section className="container-page mt-20 sm:mt-28">
+        <SectionHeading
+          eyebrow="Makes"
+          title="Discover Top Car Brands"
+          description="Explore the most trusted and popular car brands in our inventory."
+        />
+        <div className="mt-8">
+          <BrandCarousel makes={makes} />
         </div>
       </section>
 
