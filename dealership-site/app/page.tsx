@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import CarCard from "@/components/CarCard";
 import SectionHeading from "@/components/SectionHeading";
@@ -6,6 +5,7 @@ import Stars from "@/components/Stars";
 import PartnerLogo from "@/components/PartnerLogo";
 import BodyTypeCarousel from "@/components/BodyTypeCarousel";
 import BrandCarousel from "@/components/BrandCarousel";
+import HeroSlideshow from "@/components/HeroSlideshow";
 import { getAllCars, getApprovedReviews, getFeaturedCars, getMakes, getPartners } from "@/lib/data";
 import { siteConfig } from "@/lib/site-config";
 
@@ -21,28 +21,22 @@ export default async function HomePage() {
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : 0;
   const heroImages = featured.slice(0, 4).map((c) => c.images[0]).filter(Boolean);
-  const heroImage = heroImages[0];
   const makes = getMakes(allCars);
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-10 sm:pt-14">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-16 select-none whitespace-nowrap text-center font-display text-[16vw] font-black leading-none text-ink/[0.04] sm:top-20 sm:text-[9rem]"
-        >
-          {siteConfig.name.toUpperCase()}
-        </div>
+      {/* Hero — full-bleed auto-rotating photo slideshow with text overlaid */}
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden sm:min-h-[80vh]">
+        <HeroSlideshow images={heroImages} />
 
         <div className="container-page relative z-10 text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
             Trusted Car Import &amp; Sales — Addis Ababa
           </p>
-          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-brand-gradient sm:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl">
             Connecting you with the right car every time.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
             Every car we import is inspected, photographed in full, and listed with an honest
             condition summary — so what you see is exactly what you get when you arrive.
           </p>
@@ -50,50 +44,21 @@ export default async function HomePage() {
           {reviews.length > 0 && (
             <div className="mt-5 flex items-center justify-center gap-3">
               <Stars rating={Math.round(avgRating)} />
-              <p className="text-sm text-ink-soft">
-                <span className="font-medium text-ink">{avgRating.toFixed(1)}</span> from{" "}
+              <p className="text-sm text-white/80">
+                <span className="font-medium text-white">{avgRating.toFixed(1)}</span> from{" "}
                 {reviews.length}+ verified buyers
               </p>
             </div>
           )}
         </div>
-
-        <div className="container-page relative z-10 mt-6 sm:mt-10">
-          <div className="relative mx-auto aspect-[16/9] max-w-3xl">
-            {heroImage && (
-              <Image
-                src={heroImage.url}
-                alt={heroImage.alt}
-                fill
-                unoptimized
-                priority
-                sizes="(min-width: 640px) 48rem, 100vw"
-                className="object-contain drop-shadow-2xl"
-              />
-            )}
-          </div>
-
-          {heroImages.length > 1 && (
-            <div className="absolute right-2 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex">
-              <span className="text-xs font-medium uppercase tracking-wide text-accent [writing-mode:vertical-rl]">
-                Exclusive Car Selections
-              </span>
-              <div className="flex flex-col gap-2">
-                {heroImages.map((img, i) => (
-                  <span key={img.id} className={`h-2 w-2 rounded-full ${i === 0 ? "bg-accent" : "bg-line"}`} />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
       </section>
 
-      {/* Search bar */}
-      <section className="container-page relative z-10 mt-8 sm:mt-12">
+      {/* Search bar — pulled up to overlap the bottom edge of the hero */}
+      <section className="container-page relative z-10 -mt-10 sm:-mt-14">
         <form
           action="/cars"
           method="GET"
-          className="rounded-2xl border border-line bg-surface p-3 shadow-lg shadow-ink/10 sm:p-4"
+          className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/20 sm:p-4"
         >
           <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
             <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-ink-soft">

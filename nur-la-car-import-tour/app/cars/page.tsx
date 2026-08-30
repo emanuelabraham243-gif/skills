@@ -5,6 +5,7 @@ import CarFiltersPanel from "@/components/CarFiltersPanel";
 import SectionHeading from "@/components/SectionHeading";
 import BodyTypeCarousel from "@/components/BodyTypeCarousel";
 import BrandCarousel from "@/components/BrandCarousel";
+import HeroSlideshow from "@/components/HeroSlideshow";
 import { getAllCars, getMakes } from "@/lib/data";
 import type { BodyType, CarFilters, FuelType, Transmission } from "@/lib/types";
 
@@ -43,33 +44,30 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
   const filters = parseFilters(sp);
   const [cars, allCars] = await Promise.all([getAllCars(filters), getAllCars()]);
   const makes = getMakes(allCars);
+  const heroImages = allCars.slice(0, 4).map((c) => c.images[0]).filter(Boolean);
 
   return (
     <div>
-      <section className="relative overflow-hidden pt-8 sm:pt-10">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-10 select-none whitespace-nowrap text-center font-display text-[15vw] font-black leading-none text-ink/[0.04] sm:text-[8rem]"
-        >
-          NUR LA CARS
-        </div>
+      <section className="relative flex min-h-[55vh] items-center overflow-hidden sm:min-h-[65vh]">
+        <HeroSlideshow images={heroImages} />
 
         <div className="container-page relative z-10 text-center">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-car-accent">Inventory</p>
-          <h1 className="mx-auto mt-3 max-w-2xl text-3xl font-bold leading-tight text-car-gradient sm:text-4xl">
+          <h1 className="mx-auto mt-3 max-w-2xl text-3xl font-bold leading-tight text-white sm:text-4xl">
             Browse our current stock
           </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft sm:text-base">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base">
             Every car listed here has been inspected and photographed in full. Use the filters to
             narrow down by make, budget, mileage and more.
           </p>
         </div>
+      </section>
 
-        <div className="container-page relative z-10 mt-6">
+      <div className="container-page relative z-10 -mt-10 sm:-mt-14">
           <form
             action="/cars"
             method="GET"
-            className="rounded-2xl border border-line bg-surface p-3 shadow-lg shadow-ink/10 sm:p-4"
+            className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/20 sm:p-4"
           >
             <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
               <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-ink-soft">
@@ -115,8 +113,7 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
               </div>
             </div>
           </form>
-        </div>
-      </section>
+      </div>
 
       <div className="container-page mt-14 sm:mt-16">
         <SectionHeading eyebrow="Browse" title="Search by Body Type" />
