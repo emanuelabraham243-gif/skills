@@ -48,7 +48,7 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
 
   return (
     <div>
-      <section className="relative flex min-h-[55vh] items-center overflow-hidden sm:min-h-[65vh]">
+      <section className="relative overflow-hidden py-16 sm:py-24">
         <HeroSlideshow images={heroImages} />
 
         <div className="container-page relative z-10 text-center">
@@ -61,13 +61,12 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
             narrow down by make, budget, mileage and more.
           </p>
         </div>
-      </section>
 
-      <div className="container-page relative z-10 -mt-10 sm:-mt-14">
+        <div className="container-page relative z-10 mt-8 sm:mt-10">
           <form
             action="/cars"
             method="GET"
-            className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/20 sm:p-4"
+            className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/30 sm:p-4"
           >
             <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
               <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-ink-soft">
@@ -113,7 +112,8 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
               </div>
             </div>
           </form>
-      </div>
+        </div>
+      </section>
 
       <div className="container-page mt-14 sm:mt-16">
         <SectionHeading eyebrow="Browse" title="Search by Body Type" />

@@ -38,7 +38,10 @@ export default function HeroSlideshow({ images }: { images: GalleryImage[] }) {
           />
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/25" />
+      {/* Dark only near the top, where the headline sits — clear/photographic
+          further down so the search bar and body below it sit on a crisp
+          photo instead of a hazy overlay. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/25 to-ink/10" />
 
       {images.length > 1 && (
         <div className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-2">

@@ -25,8 +25,11 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero — full-bleed auto-rotating photo slideshow with text overlaid */}
-      <section className="relative flex min-h-[70vh] items-center overflow-hidden sm:min-h-[80vh]">
+      {/* Hero — full-bleed auto-rotating photo slideshow with text overlaid.
+          Height comes from the content (text + search bar) rather than a
+          fixed vh, so the photo always extends exactly behind both with no
+          leftover blank gap. */}
+      <section className="relative overflow-hidden py-16 sm:py-24">
         <HeroSlideshow images={heroImages} />
 
         <div className="container-page relative z-10 text-center">
@@ -51,15 +54,13 @@ export default async function HomePage() {
             </div>
           )}
         </div>
-      </section>
 
-      {/* Search bar — pulled up to overlap the bottom edge of the hero */}
-      <section className="container-page relative z-10 -mt-10 sm:-mt-14">
-        <form
-          action="/cars"
-          method="GET"
-          className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/20 sm:p-4"
-        >
+        <div className="container-page relative z-10 mt-8 sm:mt-10">
+          <form
+            action="/cars"
+            method="GET"
+            className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/30 sm:p-4"
+          >
           <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
             <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 shrink-0 text-ink-soft">
               <path
@@ -140,7 +141,8 @@ export default async function HomePage() {
               </button>
             </div>
           </div>
-        </form>
+          </form>
+        </div>
       </section>
 
       {/* Search by body type */}
