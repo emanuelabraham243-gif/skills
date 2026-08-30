@@ -164,18 +164,26 @@ body {
   color: transparent;
 }
 
-/* Horizontal carousels (brands, body types) — snap-scrolling native
-   overflow rather than a JS carousel library, scrollbar hidden so the
-   arrow buttons feel like the only way to navigate. */
-.scroll-snap-x {
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+/* Continuously auto-scrolling carousels (body types, brands) — the track
+   renders its items twice back-to-back and animates from 0 to -50%, which
+   is a seamless loop as long as the container clips overflow. Paused on
+   hover so an item can actually be clicked/read, and disabled entirely
+   under reduced motion. */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.scroll-snap-x::-webkit-scrollbar {
-  display: none;
+.marquee-track {
+  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
 }
 
-.scroll-snap-item {
-  scroll-snap-align: start;
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }

@@ -1,7 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useRef, type ReactNode } from "react";
+import type { CSSProperties } from "react";
+import type { ReactNode } from "react";
 import type { BodyType } from "@/lib/types";
 
 const bodyTypes: { value: BodyType; label: string; icon: ReactNode }[] = [
@@ -74,42 +73,27 @@ const bodyTypes: { value: BodyType; label: string; icon: ReactNode }[] = [
 ];
 
 export default function BodyTypeCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  function scroll(direction: 1 | -1) {
-    trackRef.current?.scrollBy({ left: direction * 220, behavior: "smooth" });
-  }
+  // Rendered twice back-to-back so the marquee-scroll animation (0 to -50%)
+  // loops seamlessly — see .marquee-track in globals.css.
+  const loop = [...bodyTypes, ...bodyTypes];
 
   return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => scroll(-1)}
-        aria-label="Scroll left"
-        className="absolute -left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-car-accent text-white shadow-md sm:flex"
+    <div className="overflow-hidden">
+      <div
+        className="marquee-track flex w-max gap-4"
+        style={{ "--marquee-duration": "26s" } as CSSProperties}
       >
-        ‹
-      </button>
-      <div ref={trackRef} className="scroll-snap-x flex gap-4 overflow-x-auto pb-2">
-        {bodyTypes.map((bt) => (
+        {loop.map((bt, i) => (
           <Link
-            key={bt.value}
+            key={`${bt.value}-${i}`}
             href={`/cars?bodyType=${bt.value}`}
-            className="scroll-snap-item flex w-36 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-line bg-surface py-8 text-purple transition-colors hover:border-purple hover:bg-purple-soft"
+            className="flex w-36 shrink-0 flex-col items-center justify-center gap-3 rounded-2xl border border-line bg-surface py-8 text-purple transition-colors hover:border-purple hover:bg-purple-soft"
           >
             {bt.icon}
             <span className="text-xs font-semibold uppercase tracking-wide text-ink">{bt.label}</span>
           </Link>
         ))}
       </div>
-      <button
-        type="button"
-        onClick={() => scroll(1)}
-        aria-label="Scroll right"
-        className="absolute -right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-car-accent text-white shadow-md sm:flex"
-      >
-        ›
-      </button>
     </div>
   );
 }
