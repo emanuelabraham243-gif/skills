@@ -9,6 +9,7 @@ import BrandCarousel from "@/components/BrandCarousel";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import TrustStats from "@/components/TrustStats";
 import { getAllCars, getApprovedReviews, getFeaturedCars, getMakes, getPartners } from "@/lib/data";
+import { heroImages } from "@/lib/hero-images";
 import { siteConfig } from "@/lib/site-config";
 
 export default async function HomePage() {
@@ -22,7 +23,6 @@ export default async function HomePage() {
   const avgRating = reviews.length
     ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
     : 0;
-  const heroImages = featured.slice(0, 4).map((c) => c.images[0]).filter(Boolean);
   const makes = getMakes(allCars);
 
   return (
