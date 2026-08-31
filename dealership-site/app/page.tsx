@@ -43,10 +43,6 @@ export default async function HomePage() {
           <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-ink sm:text-5xl">
             Connecting you with the right car every time.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            Every car we import is inspected, photographed in full, and listed with an honest
-            condition summary — so what you see is exactly what you get when you arrive.
-          </p>
 
           {reviews.length > 0 && (
             <div className="mt-5 flex items-center justify-center gap-3">
