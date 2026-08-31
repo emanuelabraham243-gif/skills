@@ -6,6 +6,7 @@ import PartnerLogo from "@/components/PartnerLogo";
 import BodyTypeCarousel from "@/components/BodyTypeCarousel";
 import BrandCarousel from "@/components/BrandCarousel";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import TrustStats from "@/components/TrustStats";
 import { getAllCars, getApprovedReviews, getFeaturedCars, getMakes, getPartners } from "@/lib/data";
 import { siteConfig } from "@/lib/site-config";
 
@@ -144,6 +145,8 @@ export default async function HomePage() {
           </form>
         </div>
       </section>
+
+      <TrustStats />
 
       {/* Search by body type */}
       <section className="container-page mt-16 sm:mt-24">

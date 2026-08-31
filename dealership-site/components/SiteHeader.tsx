@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -49,7 +50,17 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between sm:h-20">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2.5">
+          {siteConfig.logo && (
+            <Image
+              src={siteConfig.logo}
+              alt={siteConfig.name}
+              width={40}
+              height={40}
+              unoptimized
+              className="h-9 w-9 shrink-0 rounded-lg object-cover sm:h-10 sm:w-10"
+            />
+          )}
           <span className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">
             {siteConfig.name}
           </span>
