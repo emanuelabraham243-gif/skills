@@ -51,23 +51,17 @@ export const photoCredits: PhotoCredit[] = [
 ];
 
 function carImages(slug: string, make: string, model: string, year: number): GalleryImage[] {
-  const credit = photoCredits.find((c) => c.slug === slug);
-  return carAngleLabels.map((label, i) => {
-    if (i === 0 && credit) {
-      return {
-        id: `${slug}-img-0`,
-        url: credit.url,
-        alt: `${year} ${make} ${model} — reference photo (trim/color may vary)`,
-        position: 0,
-      };
-    }
-    return {
-      id: `${slug}-img-${i}`,
-      url: `/cars/${slug}/${i}.svg`,
-      alt: `${year} ${make} ${model} — ${label}`,
-      position: i,
-    };
-  });
+  // Always use the local placeholder art, never a hotlinked external URL —
+  // photoCredits above is reference photography to swap in once real
+  // inventory photos exist, not something safe to link to live: it depends
+  // on a third-party host being reachable, which isn't guaranteed on every
+  // network (this cost two rounds of "the pictures are empty" reports).
+  return carAngleLabels.map((label, i) => ({
+    id: `${slug}-img-${i}`,
+    url: `/cars/${slug}/${i}.svg`,
+    alt: `${year} ${make} ${model} — ${label}`,
+    position: i,
+  }));
 }
 
 const tourAngleLabels = ["Cover", "Landscape", "Group Highlight", "Detail"];

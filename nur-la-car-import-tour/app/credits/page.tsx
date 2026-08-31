@@ -16,7 +16,7 @@ export default function CreditsPage() {
       <SectionHeading
         eyebrow="Attribution"
         title="Photo credits"
-        description="Car cards on this site currently use reference photography from Wikimedia Commons while real inventory photos are being prepared. Trim and color may differ slightly from the listed vehicle. Full-gallery images remain placeholder art. Credit is listed below as required by each photo's license."
+        description="This site currently displays placeholder illustration art while real inventory photos are being prepared. The reference photography below, sourced from Wikimedia Commons, is a candidate set for that future photo set — not yet shown live on car cards. Trim and color may differ slightly from the listed vehicle. Credit is listed below as required by each photo's license."
       />
 
       {unverified.length > 0 && (
