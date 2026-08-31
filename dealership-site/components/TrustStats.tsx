@@ -1,3 +1,4 @@
+import CountUp from "@/components/CountUp";
 import { siteConfig } from "@/lib/site-config";
 
 export default function TrustStats() {
@@ -8,7 +9,16 @@ export default function TrustStats() {
       <div className="container-page grid grid-cols-2 gap-6 py-10 sm:grid-cols-4 sm:py-12">
         {siteConfig.stats.map((stat) => (
           <div key={stat.label} className="text-center">
-            <p className="font-display text-3xl font-bold text-purple sm:text-4xl">{stat.value}</p>
+            <p className="font-display text-3xl font-bold text-purple sm:text-4xl">
+              {stat.to !== undefined ? (
+                <>
+                  <CountUp to={stat.to} separator={stat.separator} duration={1.5} />
+                  {stat.suffix}
+                </>
+              ) : (
+                stat.value
+              )}
+            </p>
             <p className="mt-1 text-xs font-medium uppercase tracking-wide text-ink-soft sm:text-sm">
               {stat.label}
             </p>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Heart, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,14 +20,6 @@ const navLinks = [
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
 ];
-
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-      <path d="M10 17.35c-.24 0-.47-.08-.65-.24C4.4 12.9 2 10.53 2 7.6 2 5.2 3.9 3.3 6.3 3.3c1.36 0 2.66.64 3.7 1.8a5 5 0 0 1 3.7-1.8c2.4 0 4.3 1.9 4.3 4.3 0 2.93-2.4 5.3-7.35 9.51-.18.16-.41.24-.65.24Z" />
-    </svg>
-  );
-}
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -82,7 +75,7 @@ export default function SiteHeader() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <Link href="/wishlist" className="relative flex items-center text-ink-soft hover:text-accent" aria-label="Wishlist">
-            <HeartIcon />
+            <Heart className="h-5 w-5" strokeWidth={1.8} />
             {wishlist.length > 0 && (
               <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-accent-ink">
                 {wishlist.length}
@@ -103,7 +96,7 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-2 lg:hidden">
           <Link href="/wishlist" className="relative flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink-soft" aria-label="Wishlist">
-            <HeartIcon />
+            <Heart className="h-5 w-5" strokeWidth={1.8} />
             {wishlist.length > 0 && (
               <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-accent-ink">
                 {wishlist.length}
@@ -116,19 +109,9 @@ export default function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink"
           >
-            <span className="relative block h-3.5 w-4">
-              <span
-                className={`absolute left-0 top-0 h-[1.5px] w-full bg-ink transition-transform ${open ? "translate-y-[6.5px] rotate-45" : ""}`}
-              />
-              <span
-                className={`absolute left-0 top-1/2 h-[1.5px] w-full -translate-y-1/2 bg-ink transition-opacity ${open ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`absolute bottom-0 left-0 h-[1.5px] w-full bg-ink transition-transform ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`}
-              />
-            </span>
+            {open ? <X className="h-4.5 w-4.5" strokeWidth={1.8} /> : <Menu className="h-4.5 w-4.5" strokeWidth={1.8} />}
           </button>
         </div>
       </div>

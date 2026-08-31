@@ -12,14 +12,19 @@ export const siteConfig = {
   instagram: "https://instagram.com/yemareyamcarimport",
   facebook: "https://facebook.com/yemareyamcarimport",
   tiktok: "https://tiktok.com/@yemareyamcarimport",
-  // Shown in the trust strip under the hero — swap these for the importer's
-  // real numbers when known, otherwise these read as reasonable placeholders.
+  // Shown in the trust strip under the hero, numbers animate up into view —
+  // swap these for the importer's real figures when known, otherwise these
+  // read as reasonable placeholders. Use `value` instead of `to` for a
+  // stat that isn't a count (e.g. "24/7") so it renders as static text.
   stats: [
-    { value: "500+", label: "Cars Imported" },
-    { value: "10+", label: "Years Experience" },
-    { value: "1,200+", label: "Happy Customers" },
+    { to: 500, suffix: "+", label: "Cars Imported" },
+    { to: 10, suffix: "+", label: "Years Experience" },
+    { to: 1200, suffix: "+", separator: ",", label: "Happy Customers" },
     { value: "24/7", label: "Support" },
-  ],
+  ] as Array<
+    | { to: number; suffix?: string; separator?: string; label: string; value?: undefined }
+    | { value: string; label: string; to?: undefined }
+  >,
 };
 
 export function whatsappLink(message?: string) {

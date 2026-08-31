@@ -1,8 +1,9 @@
 "use client";
 
+import { ArrowLeftRight, Compass, Fuel, Gauge, Heart, Settings2, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { useRef, useState, type MouseEvent, type ReactNode } from "react";
 import type { Car } from "@/lib/types";
 import { formatMileage, titleCase } from "@/lib/format";
 import PriceGate from "./PriceGate";
@@ -22,41 +23,15 @@ function SpecChip({ icon, label }: { icon: ReactNode; label: string }) {
 }
 
 const icons = {
-  mileage: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M10 2a8 8 0 1 0 8 8 8.01 8.01 0 0 0-8-8Zm.75 8.31 3.4 2-.75 1.3-3.9-2.3a.9.9 0 0 1-.5-.81V6h1.5v4.31Z" />
-    </svg>
-  ),
-  fuel: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M5 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9.41l1.29 1.3a1 1 0 0 0 1.7-.71V6a2 2 0 0 0-.59-1.41l-1.7-1.7-.71.71 1.5 1.5A1 1 0 0 1 13 6v3l-1-1V3a1 1 0 0 0-1-1H5Zm0 2h5v3H5V4Z" />
-    </svg>
-  ),
-  transmission: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M10 2a1 1 0 0 1 1 1v2.09A6 6 0 0 1 15.91 9H18a1 1 0 1 1 0 2h-2.09A6 6 0 0 1 11 15.91V18a1 1 0 1 1-2 0v-2.09A6 6 0 0 1 4.09 11H2a1 1 0 1 1 0-2h2.09A6 6 0 0 1 9 4.09V2a1 1 0 0 1 1-1Zm0 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
-    </svg>
-  ),
-  drivetrain: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M10 1a1 1 0 0 1 1 1v1.09a7.93 7.93 0 0 1 4.13 1.71l.77-.77a1 1 0 1 1 1.41 1.41l-.77.77A7.93 7.93 0 0 1 17.91 9H19a1 1 0 1 1 0 2h-1.09a7.93 7.93 0 0 1-1.71 4.13l.77.77a1 1 0 1 1-1.41 1.41l-.77-.77A7.93 7.93 0 0 1 11 17.91V19a1 1 0 1 1-2 0v-1.09a7.93 7.93 0 0 1-4.13-1.71l-.77.77a1 1 0 0 1-1.41-1.41l.77-.77A7.93 7.93 0 0 1 2.09 11H1a1 1 0 1 1 0-2h1.09a7.93 7.93 0 0 1 1.71-4.13l-.77-.77a1 1 0 0 1 1.41-1.41l.77.77A7.93 7.93 0 0 1 9 2.09V1a1 1 0 0 1 1-1Zm0 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" />
-    </svg>
-  ),
+  mileage: <Gauge className="h-3.5 w-3.5" strokeWidth={2.25} />,
+  fuel: <Fuel className="h-3.5 w-3.5" strokeWidth={2.25} />,
+  transmission: <Settings2 className="h-3.5 w-3.5" strokeWidth={2.25} />,
+  drivetrain: <Compass className="h-3.5 w-3.5" strokeWidth={2.25} />,
   heart: (filled: boolean) => (
-    <svg viewBox="0 0 20 20" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth={filled ? 0 : 1.6} className="h-4 w-4">
-      <path d="M10 17.35c-.24 0-.47-.08-.65-.24C4.4 12.9 2 10.53 2 7.6 2 5.2 3.9 3.3 6.3 3.3c1.36 0 2.66.64 3.7 1.8a5 5 0 0 1 3.7-1.8c2.4 0 4.3 1.9 4.3 4.3 0 2.93-2.4 5.3-7.35 9.51-.18.16-.41.24-.65.24Z" />
-    </svg>
+    <Heart className="h-4 w-4" strokeWidth={1.8} fill={filled ? "currentColor" : "none"} />
   ),
-  share: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-      <path d="M15 3a2.5 2.5 0 1 0-2.45 2.99l-4.4 2.53a2.5 2.5 0 1 0 0 3.05l4.4 2.53A2.5 2.5 0 1 0 13.5 12c0-.24-.04-.47-.1-.69l-4.4-2.53a2.5 2.5 0 0 0 0-1.56l4.4-2.53c.35.19.75.3 1.18.31H15a2.5 2.5 0 0 0 0-5v2Z" />
-    </svg>
-  ),
-  compare: (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-      <path d="M6 3a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V6.41L3.71 7.71a1 1 0 1 1-1.42-1.42l3-3A1 1 0 0 1 6 3Zm8 14a1 1 0 0 1-1-1V6a1 1 0 1 1 2 0v7.59l1.29-1.3a1 1 0 1 1 1.42 1.42l-3 3A1 1 0 0 1 14 17Z" />
-    </svg>
-  ),
+  share: <Share2 className="h-4 w-4" strokeWidth={1.8} />,
+  compare: <ArrowLeftRight className="h-4 w-4" strokeWidth={1.8} />,
 };
 
 export default function CarCard({ car }: { car: Car }) {
@@ -65,6 +40,14 @@ export default function CarCard({ car }: { car: Car }) {
   const [isRecentArrival] = useState(() => Date.now() - new Date(car.createdAt).getTime() < FOURTEEN_DAYS_MS);
   const [wishlisted, setWishlisted] = useState(() => isWishlisted(car.id));
   const [comparing, setComparing] = useState(() => isComparing(car.id));
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, opacity: 0 });
+
+  function handleCardMouseMove(e: MouseEvent<HTMLDivElement>) {
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top, opacity: 1 });
+  }
 
   const ribbon = car.isFeatured
     ? { label: "Hot Deal!", className: "bg-accent text-white" }
@@ -99,7 +82,24 @@ export default function CarCard({ car }: { car: Car }) {
   }
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm shadow-ink/5 transition-shadow hover:shadow-lg hover:shadow-ink/10">
+    <div
+      ref={cardRef}
+      onMouseMove={handleCardMouseMove}
+      onMouseLeave={() => setSpotlight((s) => ({ ...s, opacity: 0 }))}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-sm shadow-ink/5 transition-shadow hover:shadow-lg hover:shadow-ink/10"
+    >
+      {/* Mouse-tracking spotlight glow — a subtle premium touch adapted from
+          React Bits' SpotlightCard, tuned to this site's accent color. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-500 ease-in-out"
+        style={{
+          opacity: spotlight.opacity * 0.5,
+          background: `radial-gradient(280px circle at ${spotlight.x}px ${spotlight.y}px, var(--accent), transparent 70%)`,
+          mixBlendMode: "soft-light",
+        }}
+      />
+
       <Link href={`/cars/${car.slug}`} className="relative block aspect-[4/3] w-full overflow-hidden bg-paper-dim">
         {primary && (
           <Image
