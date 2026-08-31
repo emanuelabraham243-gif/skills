@@ -28,20 +28,22 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero — full-bleed auto-rotating photo slideshow with text overlaid.
-          Height comes from the content (text + search bar) rather than a
-          fixed vh, so the photo always extends exactly behind both with no
-          leftover blank gap. */}
+          Height comes from the content (headline + search bar + stats)
+          rather than a fixed vh, so the photo always extends exactly behind
+          all of it with no leftover blank gap — the trust stats live here
+          now instead of in a separate section below. */}
       <section className="relative overflow-hidden py-16 sm:py-24">
         <HeroSlideshow images={heroImages} />
 
         <div className="container-page relative z-10 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <p className="font-display text-lg font-semibold text-ink sm:text-xl">{siteConfig.name}</p>
+          <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-accent">
             Trusted Car Import &amp; Sales — Addis Ababa
           </p>
-          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl">
+          <h1 className="mx-auto mt-4 max-w-3xl font-display text-4xl font-bold leading-[1.1] text-ink sm:text-5xl">
             Connecting you with the right car every time.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
             Every car we import is inspected, photographed in full, and listed with an honest
             condition summary — so what you see is exactly what you get when you arrive.
           </p>
@@ -49,8 +51,8 @@ export default async function HomePage() {
           {reviews.length > 0 && (
             <div className="mt-5 flex items-center justify-center gap-3">
               <Stars rating={Math.round(avgRating)} />
-              <p className="text-sm text-white/80">
-                <span className="font-medium text-white">{avgRating.toFixed(1)}</span> from{" "}
+              <p className="text-sm text-ink-soft">
+                <span className="font-medium text-ink">{avgRating.toFixed(1)}</span> from{" "}
                 {reviews.length}+ verified buyers
               </p>
             </div>
@@ -61,7 +63,7 @@ export default async function HomePage() {
           <form
             action="/cars"
             method="GET"
-            className="rounded-2xl border border-line bg-surface p-3 shadow-xl shadow-ink/30 sm:p-4"
+            className="rounded-2xl border border-white/40 bg-surface/5 p-3 backdrop-blur-sm sm:p-4"
           >
           <div className="flex items-center gap-2 rounded-xl border border-line px-4 py-3">
             <Search className="h-4 w-4 shrink-0 text-ink-soft" strokeWidth={2} />
@@ -139,9 +141,11 @@ export default async function HomePage() {
           </div>
           </form>
         </div>
-      </section>
 
-      <TrustStats />
+        <div className="relative z-10 mt-10 sm:mt-14">
+          <TrustStats variant="overlay" />
+        </div>
+      </section>
 
       {/* Search by body type */}
       <section className="container-page mt-16 sm:mt-24">

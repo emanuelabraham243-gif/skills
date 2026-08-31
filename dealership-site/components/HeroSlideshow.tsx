@@ -38,10 +38,12 @@ export default function HeroSlideshow({ images }: { images: CarImage[] }) {
           />
         </div>
       ))}
-      {/* Dark only near the top, where the headline sits — clear/photographic
-          further down so the search bar and body below it sit on a crisp
-          photo instead of a hazy overlay. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/25 to-ink/10" />
+      {/* A light wash, not a dark one — the hero now carries dark text
+          (headline, business name, stats) instead of white, so the photo
+          needs to read as bright throughout rather than moody. Lightest in
+          the middle so the photo itself still shows through clearly behind
+          the near-transparent search bar. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/30 to-white/55" />
 
       {images.length > 1 && (
         <div className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-2">
@@ -51,7 +53,7 @@ export default function HeroSlideshow({ images }: { images: CarImage[] }) {
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Show slide ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${i === index ? "w-6 bg-accent" : "w-2 bg-white/50 hover:bg-white/80"}`}
+              className={`h-2 rounded-full transition-all ${i === index ? "w-6 bg-accent" : "w-2 bg-ink/25 hover:bg-ink/50"}`}
             />
           ))}
         </div>
