@@ -5,9 +5,9 @@ export const site = {
   description:
     "COLOR Furniture is Addis Ababa's home for curated, imported furniture — sofas, dining, bedroom and office pieces designed for modern Ethiopian living.",
   url: "https://colorfurniture.et",
-  phone: "+251 911 234 567",
-  phoneHref: "tel:+251911234567",
-  whatsappNumber: "251911234567",
+  phone: "+251 91 122 9324",
+  phoneHref: "tel:+251911229324",
+  whatsappNumber: "251911229324",
   email: "hello@colorfurniture.et",
   address: {
     line1: "Bole Road, near Edna Mall",
