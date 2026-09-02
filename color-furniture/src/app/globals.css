@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  --color-ivory: #faf7f2;
+  --color-cream: #f3ede2;
+  --color-beige: #e8ddc8;
+  --color-taupe: #b3a08c;
+  --color-taupe-dark: #8a7a68;
+  --color-wood: #7c5a3b;
+  --color-wood-dark: #5c4229;
+  --color-charcoal: #211d1a;
+  --color-charcoal-soft: #34302b;
+  --color-ink: #17140f;
+  --color-line: #ddd2bf;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-manrope);
+}
+
+@theme inline {
+  --color-ivory: var(--color-ivory);
+  --color-cream: var(--color-cream);
+  --color-beige: var(--color-beige);
+  --color-taupe: var(--color-taupe);
+  --color-taupe-dark: var(--color-taupe-dark);
+  --color-wood: var(--color-wood);
+  --color-wood-dark: var(--color-wood-dark);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-soft: var(--color-charcoal-soft);
+  --color-ink: var(--color-ink);
+  --color-line: var(--color-line);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-wood);
+  color: var(--color-ivory);
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+}
+
+/* Fine, editorial letterspacing for eyebrow labels */
+.eyebrow {
+  letter-spacing: 0.22em;
+}
+
+/* Reveal-on-scroll utility, progressively enhanced */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom underline-grow link */
+.link-underline {
+  position: relative;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Custom scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
