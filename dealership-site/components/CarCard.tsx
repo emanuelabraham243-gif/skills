@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, Compass, Fuel, Gauge, Heart, Settings2, Share2 } from "lucide-react";
+import { ArrowLeftRight, ArrowRight, Compass, Fuel, Gauge, Heart, Settings2, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, type MouseEvent, type ReactNode } from "react";
@@ -173,15 +173,13 @@ export default function CarCard({ car }: { car: Car }) {
           </div>
         </div>
 
-        <div className="mt-auto flex items-center gap-3 pt-2">
+        <div className="mt-auto pt-2">
           <Link
             href={`/cars/${car.slug}`}
-            className="flex-1 rounded-full bg-brand-gradient px-4 py-2.5 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            className="flex w-full items-center justify-center gap-1.5 rounded-full bg-purple px-4 py-2.5 text-sm font-semibold text-purple-ink transition-colors hover:opacity-90"
           >
-            GET IT NOW
-          </Link>
-          <Link href={`/cars/${car.slug}`} className="text-sm font-medium text-purple hover:underline">
-            View Car →
+            View Details
+            <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
           </Link>
         </div>
       </div>
