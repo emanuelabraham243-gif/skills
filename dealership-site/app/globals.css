@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* Design language: deep green + orange — the --purple/--purple-soft/
+   --purple-ink variable names are kept as-is (every component already
+   references them) even though the color is green, to match the current
+   pitch target's green logo. Swap these three values again for the next
+   importer's brand color. */
+:root {
+  --paper: #ffffff;
+  --paper-dim: #f3f9f5;
+  --surface: #ffffff;
+  --ink: #16122a;
+  --ink-soft: #625d78;
+  --line: #e2ede6;
+  --purple: #065f46;
+  --purple-soft: #d1fae5;
+  --purple-ink: #ffffff;
+  --accent: #f5821f;
+  --accent-soft: #ffe1bf;
+  --accent-ink: #3a1e00;
+  --arrived: #16a34a;
+  --arrived-soft: #dcfce7;
+  --amber-bg: #fef3c7;
+  --amber-ink: #92400e;
+}
+
+/* Dark palette — applied when the system prefers dark and the visitor
+   hasn't explicitly chosen light, or whenever data-theme="dark" is set
+   (the toggle in the header always wins over the system preference). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b1410;
+    --paper-dim: #0f1a15;
+    --surface: #16241d;
+    --ink: #f1eef9;
+    --ink-soft: #b2adca;
+    --line: #26382e;
+    --purple: #34d399;
+    --purple-soft: #0b3b2e;
+    --purple-ink: #f0fdf4;
+    --accent: #ff9a4d;
+    --accent-soft: #4a2a10;
+    --accent-ink: #1c0f00;
+    --arrived: #4ade80;
+    --arrived-soft: #123321;
+    --amber-bg: #3f2d10;
+    --amber-ink: #f2c675;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0b1410;
+  --paper-dim: #0f1a15;
+  --surface: #16241d;
+  --ink: #f1eef9;
+  --ink-soft: #b2adca;
+  --line: #26382e;
+  --purple: #34d399;
+  --purple-soft: #0b3b2e;
+  --purple-ink: #f0fdf4;
+  --accent: #ff9a4d;
+  --accent-soft: #4a2a10;
+  --accent-ink: #1c0f00;
+  --arrived: #4ade80;
+  --arrived-soft: #123321;
+  --amber-bg: #3f2d10;
+  --amber-ink: #f2c675;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-purple: var(--purple);
+  --color-purple-soft: var(--purple-soft);
+  --color-purple-ink: var(--purple-ink);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-arrived: var(--arrived);
+  --color-arrived-soft: var(--arrived-soft);
+  --color-amber-bg: var(--amber-bg);
+  --color-amber-ink: var(--amber-ink);
+  --font-display: var(--font-inter);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Flat, not diagonal-gradient — a solid color reads calmer and more current
+   than the gradient-pill CTA pattern the loud dealer-site look leaned on. */
+.bg-brand-gradient {
+  background-color: var(--purple);
+}
+
+.text-brand-gradient {
+  background-image: linear-gradient(90deg, var(--purple), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Continuously auto-scrolling carousels (body types, brands) — the track
+   renders its items twice back-to-back and animates from 0 to -50%, which
+   is a seamless loop as long as the container clips overflow. Paused on
+   hover so an item can actually be clicked/read, and disabled entirely
+   under reduced motion. */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
