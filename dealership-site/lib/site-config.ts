@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Abyssinia Car Import",
+  name: "Nigusu Auto",
   // Path or URL to a square logo mark (e.g. "/logo/acme.png"). Leave empty
   // to fall back to the text wordmark — this is the one thing to swap,
   // along with `name` below, before showing this site to a new importer.
